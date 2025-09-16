@@ -1,6 +1,15 @@
+"""
+File: speech_test.py
+Description:
+    Standalone speech recognition test.
+    - Tests the microphone with the Vosk speech-to-text engine.
+    - Prints recognized text to the console.
+    - Useful for debugging speech input before connecting to the UI.
+"""
+
 # Import custom modules
-from speech_module import SpeechModule  # Handles microphone speech recognition
-from sign_displayer import SignDisplay  # Handles showing sentences with sign images
+from speech_to_text import SpeechModule  # Handles microphone speech recognition
+from text_to_sign import SignDisplay  # Handles showing sentences with sign images
 import cv2  # For displaying frames and capturing keypresses
 
 # === INITIALIZE MODULES ===

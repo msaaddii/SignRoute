@@ -1,3 +1,13 @@
+"""
+File: sign_to_text.py
+Description:
+    Converts Sign Language → Text.
+    - Uses MediaPipe to extract hand landmarks.
+    - LSTM model predicts the sign being made.
+    - GrammarAI cleans raw predictions into readable sentences.
+    - Runs in real time from the camera feed.
+"""
+
 # Import libraries
 import os
 import time
@@ -105,7 +115,7 @@ CAM_INDEX = 0  # Default webcam
 CONF_THRESH = 0.70  # Minimum probability to accept prediction
 PREDICT_EVERY = 0.08  # Seconds between predictions
 VOTE_WINDOW = 5  # Number of predictions for majority vote
-EMIT_STABILITY = 3  # How many consistent votes to emit word
+EMIT_STABILITY = 5  # How many consistent votes to emit word
 
 # Load trained LSTM model and classes
 model = load_model(MODEL_PATH)

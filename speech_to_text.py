@@ -1,3 +1,12 @@
+"""
+File: speech_to_text.py
+Description:
+    Converts Speech → Text for the Interviewer Side.
+    - Uses microphone input with Vosk model.
+    - Listens and transcribes spoken words in real time.
+    - Sends recognized text to the UI for chat + sign display.
+"""
+
 # Import necessary libraries
 import queue  # Thread-safe queue to store audio chunks
 import sounddevice as sd  # Capture microphone audio

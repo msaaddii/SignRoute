@@ -1,3 +1,12 @@
+"""
+File: data_collector.py
+Description:
+    Records custom sign language data.
+    - Uses MediaPipe to track hand landmarks from the camera.
+    - Saves collected landmarks into CSV files for training.
+    - Lets you build your own dataset for new signs.
+"""
+
 # Import necessary libraries
 import cv2  # OpenCV for video capture and image processing
 import mediapipe as mp  # MediaPipe for hand landmark detection

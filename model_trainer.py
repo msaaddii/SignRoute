@@ -1,3 +1,14 @@
+"""
+File: model_trainer.py
+Description:
+    Trains the SignRoute LSTM model.
+    - Loads collected landmark data from CSV.
+    - Splits data into training/testing sets.
+    - Trains an LSTM (RNN-based) model for sign classification.
+    - Saves the trained model for real-time use.
+"""
+
+
 # Import necessary libraries
 import os  # For file handling
 import csv  # For reading CSV files

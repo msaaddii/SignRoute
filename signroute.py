@@ -1,3 +1,13 @@
+"""
+File: signroute.py
+Description:
+    Main User Interface (UI) for the SignRoute software.
+    - Provides two panels: Deaf Side (camera feed → sign → text)
+      and Interviewer Side (speech → text → sign display).
+    - Includes a shared chat box to show both sides of the conversation.
+    - Manages start/stop controls for camera and microphone input.
+"""
+
 import tkinter as tk
 from tkinter import ttk, simpledialog
 from PIL import Image, ImageTk
@@ -7,14 +17,14 @@ import time
 from collections import deque
 import numpy as np
 
-from deaf_text import GrammarAI, extract_two_hands_126, model, classes, CONF_THRESH, PREDICT_EVERY, VOTE_WINDOW, EMIT_STABILITY
-from sign_displayer import SignDisplay
-from speech_module import SpeechModule
+from sign_to_text import GrammarAI, extract_two_hands_126, model, classes, CONF_THRESH, PREDICT_EVERY, VOTE_WINDOW, EMIT_STABILITY
+from text_to_sign import SignDisplay
+from speech_to_text import SpeechModule
 
-class SignBridgeUI:
+class SignRouteUI:
     def __init__(self, root):
         self.root = root
-        self.root.title("SignBridge Software")
+        self.root.title("SignRoute Software")
         self.root.geometry("1200x750")
 
 
@@ -216,6 +226,10 @@ class SignBridgeUI:
             self.chat_log.config(state="disabled")
             self.deaf_text.delete(1.0, tk.END)
 
+            # 🔑 Reset recognition buffer so new signs start fresh
+            self.words_stream = []
+            self.last_emitted = None
+
     def confirm_interviewer_text(self):
         text = self.interviewer_text.get(1.0, tk.END).strip()
         if text:
@@ -223,6 +237,9 @@ class SignBridgeUI:
             self.chat_log.insert(tk.END, f"👂 Interviewer: {text}\n")
             self.chat_log.config(state="disabled")
             self.interviewer_text.delete(1.0, tk.END)
+
+            # 🔑 Reset recognition buffer for speech so it doesn’t append old words
+            self.sign_display.last_signs = []
 
 
     def majority_vote(self, labels):
@@ -232,5 +249,5 @@ class SignBridgeUI:
 
 if __name__ == "__main__":
     root = tk.Tk()
-    app = SignBridgeUI(root)
+    app = SignRouteUI(root)
     root.mainloop()

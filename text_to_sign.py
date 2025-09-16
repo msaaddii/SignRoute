@@ -1,3 +1,12 @@
+"""
+File: text_to_sign.py
+Description:
+    Converts Text → Sign images/animations.
+    - Displays sign images or avatar animations for interviewer text.
+    - Supports replaying the last signs.
+    - Helps Deaf user understand spoken input visually.
+"""
+
 import os
 import cv2
 import numpy as np
